@@ -23,8 +23,33 @@ void setup() {
   dispInit();
 }
 
-void loop() {
+byte red = 0xFF;
+byte blue = 0xFF;
+byte green = 0x00;
 
+void loop() {
+  commandWrite(0x2C);
+  long screenheight = 76800;
+  long i = 0;
+  while(i++ < 76800) {
+    dataWrite(red--);
+    dataWrite(green++);
+    dataWrite(blue);
+  }
+  
+  i = 0;
+  while(i++ < 76800) {
+    dataWrite(red++);
+    dataWrite(green);
+    dataWrite(blue--);
+  }
+  
+  i = 0;
+  while(i++ < 76800) {
+    dataWrite(red);
+    dataWrite(green--);
+    dataWrite(blue++);
+  }
 //Cycle colors
 //  displayWrite(44,B11111100,B00000000,B00000000);
 //  delay(10);
@@ -32,6 +57,7 @@ void loop() {
 //  delay(10);
 //  displayWrite(44,B00000000,B00000000,B11111100);
 //  delay(10);
+  
 }
 void setAllOutput() {
   pinMode(db0, OUTPUT);
@@ -49,6 +75,7 @@ void dispInit() {
   commandWrite(0x29); //Display on
   commandWrite(0x36); //Start MADCTL
   dataWrite(0x00);
+  displayWrite(0x2C,0x00,0x00,0x00);
 }
 void commandWrite(byte command) {
   setAllOutput();
