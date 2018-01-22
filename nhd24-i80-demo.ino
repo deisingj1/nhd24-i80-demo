@@ -1,9 +1,3 @@
-#include <font4x6.h>
-#include <font6x8.h>
-#include <font8x8.h>
-#include <font8x8ext.h>
-#include <fontALL.h>
-
 int dc = 11;
 int wr = 13;
 int rd = 12;
